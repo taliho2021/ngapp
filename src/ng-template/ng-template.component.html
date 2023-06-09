@@ -1,0 +1,30 @@
+<p>ng-template works!</p>
+
+<button (click)="showTemplate1()">Show Template 1</button>
+<br />
+<hr />
+<button (click)="showTemplate2()">Show Template 2</button>
+<hr />
+<button (click)="showTemplate3()">Show Template 3</button>
+<hr />
+
+<ng-container #myContainer1></ng-container>
+<ng-template #myTemplate1>
+  <p>Template 1 View</p>
+</ng-template>
+
+<ng-container #myContainer2></ng-container>
+<ng-template #myTemplate2>
+  <p>Template 2 View</p>
+</ng-template>
+
+<ng-container #myContainer3></ng-container>
+<ng-template #myTemplate3>
+  <p>Template 3 View</p>
+</ng-template>
+
+<!-- To embed view from the beginning, use ngTemplateOutlet -->
+<ng-container *ngTemplateOutlet = "myTemplate"></ng-container>
+<ng-template #myTemplate>
+    <p>Template View Not Hidden But Embedded From the Beginning!</p>
+</ng-template>
