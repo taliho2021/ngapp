@@ -1,6 +1,8 @@
 import {
+  AfterViewInit,
   Component,
   TemplateRef,
+  ElementRef,
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
@@ -14,7 +16,13 @@ import { CommonModule } from '@angular/common';
   templateUrl: './ng-template.component.html',
   styleUrls: ['./ng-template.component.scss'],
 })
-export class NgTemplateComponent {
+export class NgTemplateComponent implements AfterViewInit{
+
+@ViewChild('myParagraph', {static: false}) paragraph!: ElementRef;
+  ngAfterViewInit(): void {
+    this.paragraph.nativeElement.textContent = 'Hello! I changed the ElementRef!';
+  }  
+
   @ViewChild('myContainer1', { read: ViewContainerRef })
   container1!: ViewContainerRef;
   @ViewChild('myTemplate1', { read: TemplateRef })
