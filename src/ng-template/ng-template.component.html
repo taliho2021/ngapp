@@ -10,25 +10,25 @@
 
 <ng-container #myContainer1></ng-container>
 <ng-template #myTemplate1>
-  <p>Template 1 View</p>
+  <p class="text-3xl font-bold underline">Template 1 View</p>
+  <p class="text-3xl font-bold underline">Show Template 1 View</p>
 </ng-template>
 
 <ng-container #myContainer2></ng-container>
 <ng-template #myTemplate2>
-  <p>Template 2 View</p>
+  <p class="text-3xl font-bold underline">Template 2 View</p>
+  <p class="text-3xl font-bold underline">Show Template 2 View</p>
 </ng-template>
 
 <ng-container #myContainer3></ng-container>
 <ng-template #myTemplate3>
-  <p>Template 3 View</p>
+  <p class="text-3xl font-bold underline">Template 3 View</p>
+  <p class="text-3xl font-bold underline">Show Template 3 View</p>
 </ng-template>
 
 <!-- To embed view from the beginning, use ngTemplateOutlet -->
 <ng-container *ngTemplateOutlet = "myTemplate"></ng-container>
 <ng-template #myTemplate>
-    <p>Template View Not Hidden But Embedded From the Beginning!</p>
+    <p class="text-3xl font-bold underline">Template View Not Hidden But Embedded From the Beginning!</p>
 </ng-template>
 
-<!-- Content Projection with <ng-content> -->
-<h1>Single-slot content projection</h1>
-<ng-content></ng-content>

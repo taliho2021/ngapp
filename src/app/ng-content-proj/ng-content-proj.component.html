@@ -1,0 +1,12 @@
+<!-- Content Projection with <ng-content> -->
+<h1>Single-slot content projection</h1>
+<h1>This is from the Ng Content Projection Element.</h1>
+<ng-content></ng-content>
+<ng-content select="[role]"></ng-content>
+
+<div *ngIf="adminTemplate">
+    <template [ngTemplateOutlet]="adminTemplate">
+        
+    </template>
+
+</div>

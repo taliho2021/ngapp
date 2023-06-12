@@ -1,5 +1,10 @@
-<ngapp-ng-template>
+<ngapp-ng-content-proj>
     <p>Is content projection cool?</p>
     <p>Yes, it is!</p>
-</ngapp-ng-template>
+
+    <p role>Selected content for "roles"</p>
+</ngapp-ng-content-proj>
+<ng-template #admin>
+    This is fo the Admin Content
+</ng-template>
 <router-outlet></router-outlet>
