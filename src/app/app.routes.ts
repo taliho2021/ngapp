@@ -1,3 +1,4 @@
+import { ClientComponent } from './client/client.component';
 import { NgTemplateComponent } from 'src/ng-template/ng-template.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
 import { Route } from '@angular/router';
@@ -17,4 +18,8 @@ export const appRoutes: Route[] = [
     path: 'tabs',
     component: TabsComponent,
   },
+  {
+    path: 'client',
+    component: ClientComponent
+  }
 ];
