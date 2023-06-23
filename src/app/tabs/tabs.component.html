@@ -1,22 +1,41 @@
 <p>tabs works!</p>
 <div class="w-full">
-    <ul class="flex border-b">
-      <li class="-mb-px mr-2" [ngClass]="{'active-tab': activeTab === 1}" (click)="activeTab = 1">
-        <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold">Tab 1</a>
-      </li>
-      <li class="mr-2" [ngClass]="{'active-tab': activeTab === 2}" (click)="activeTab = 2">
-        <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold">Tab 2</a>
-      </li>
-    </ul>
-    <div [ngSwitch]="activeTab">
-      <div *ngSwitchCase="1">
-        <!-- Contents of Tab 1 -->
-        <p class="text-3xl font-bold">Tab 1 View</p>
-      </div>
-      <div *ngSwitchCase="2">
-        <!-- Contents of Tab 2 -->
-        <p class="text-3xl font-bold">Tab 2 View</p>
-      </div>
+  <ul class="flex border-b">
+    <li
+      class="-mb-px mr-2"
+      [ngClass]="{ 'active-tab': activeTab === 1 }"
+      (click)="activeTab = 1"
+    >
+      <a
+        class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold"
+        >Tab 1</a
+      >
+    </li>
+    <li
+      class="mr-2"
+      [ngClass]="{ 'active-tab': activeTab === 2 }"
+      (click)="activeTab = 2"
+    >
+      <a
+        class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold"
+        >Tab 2</a
+      >
+    </li>
+  </ul>
+  <div [ngSwitch]="activeTab" class="ml-lg pl-lg">
+    <div *ngSwitchCase="1" class="ml-lg">
+      <!-- Contents of Tab 1 -->
+      <p class="text-3xl font-bold">Tab 1 View</p>
+    </div>
+    <div *ngSwitchCase="2" class="ml-lg">
+      <!-- Contents of Tab 2 -->
+      <p class="text-3xl font-bold">Tab 2 View</p>
     </div>
   </div>
-  
+</div>
+
+<mat-tab-group class="text-3xl font-bold text-lime-500 bg-slate-300">
+  <mat-tab label="First" class="text-lime-500 bg-slate-300"> Content 1 </mat-tab>
+  <mat-tab label="Second" > Content 2 </mat-tab>
+  <mat-tab label="Third" > Content 3 </mat-tab>
+</mat-tab-group>
