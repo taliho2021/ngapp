@@ -1,116 +1,158 @@
-<h1 class="text-3xl font-bold m-3 text-center">Client Registration</h1>
+<div class="flex items-center justify-center min-h-screen bg-gray-50">
+  <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-lg w-full">
+    <h1 class="mb-8 text-4xl font-bold text-center text-indigo-600">
+      Client Registration
+    </h1>
 
-<<<<<<< HEAD
-<form
-  [formGroup]="clientForm"
-  (ngSubmit)="submitForm()"
-  class="grid grid-cols-3 grid-rows-5 gap-4 mx-auto my-auto"
->
-  <div class="grid grid-cols-3 gap-4">
-    <label class="block text-sm font-medium text-gray-700 mb-1"
-      >First Name:</label
-    >
-    <input
-      type="text"
-      formControlName="firstName"
-      class="form-input block w-full rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-    />
+    <form [formGroup]="clientForm" (ngSubmit)="submitForm()">
+      <div class="mb-4">
+        <label
+          class="block text-gray-700 text-sm font-bold mb-2"
+          for="firstName"
+        >
+          First Name
+        </label>
+        <input
+          formControlName="firstName"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="firstName"
+          type="text"
+          placeholder="First Name"
+        />
+      </div>
+      <div class="mb-4">
+        <label
+          class="block text-gray-700 text-sm font-bold mb-2"
+          for="lastName"
+        >
+          Last Name
+        </label>
+        <input
+          formControlName="lastName"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="lastName"
+          type="text"
+          placeholder="Last Name"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+          Email
+        </label>
+        <input
+          formControlName="email"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="email"
+          type="text"
+          placeholder="Email"
+        />
+      </div>
+
+      <!-- Address array block here -->
+      <div formArrayName="addresses">
+        <div
+          *ngFor="let address of addresses.controls; let i = index"
+          [formGroupName]="i"
+        >
+          <h3 class="text-3xl font-bold m-3 text-center">
+            Address {{ i + 1 }}
+          </h3>
+          <label class="block text-sm font-medium text-gray-700 mb-1"
+            >Street:</label
+          >
+          <input
+            type="text"
+            formControlName="street"
+            class="form-input block w-full rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          />
+          <label class="block text-sm font-medium text-gray-700 mb-1"
+            >City:
+          </label>
+          <select
+            formControlName="city"
+            class="form-select block w-full rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          >
+            <option *ngFor="let city of cities" [value]="city.id">
+              {{ city.name }}
+            </option>
+          </select>
+          <!-- Other address inputs go here -->
+          <button
+            type="button"
+            (click)="removeAddress(i)"
+            class="mt-2 w-28 inline-flex items-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2"
+          >
+            Remove Address
+          </button>
+        </div>
+        <button
+          type="button"
+          (click)="addAddress()"
+          class="w-28 ml-3 inline-flex items-center rounded-md border border-transparent bg-yellow-300 px-4 py-2 text-sm font-medium text-gray-800 shadow-sm hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        >
+          Add Address
+        </button>
+      </div>
+
+      <!-- Contacts array block here -->
+      <div formArrayName="contacts">
+        <div
+          *ngFor="let contact of contacts.controls; let i = index"
+          [formGroupName]="i"
+        >
+          <h3 class="text-3xl font-bold m-3 text-center">
+            Contact {{ i + 1 }}
+          </h3>
+          <label class="block text-sm font-medium text-gray-700 mb-1"
+            >Contact Number:</label
+          >
+          <input
+            type="text"
+            formControlName="contactNumber"
+            class="form-input block w-full rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          />
+
+          <label class="block text-sm font-medium text-gray-700 mb-1"
+            >Contact Type:</label
+          >
+          <select
+            formControlName="contactType"
+            class="form-select block w-full rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          >
+            <option value="phone">Phone</option>
+            <option value="email">Email</option>
+            <option value="fax">Fax</option>
+          </select>
+          <button
+            type="button"
+            (click)="removeContact(i)"
+            class="mt-2 w-28 inline-flex items-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2"
+          >
+            Remove Contact
+          </button>
+          <!-- Other contact inputs go here -->
+        </div>
+        <button
+          type="button"
+          (click)="addContact()"
+          class="w-28 ml-3 inline-flex items-center rounded-md border border-transparent bg-yellow-300 px-4 py-2 text-sm font-medium text-gray-800 shadow-sm hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        >
+          Add Contact
+        </button>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <button
+          [disabled]="!clientForm.valid"
+          class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="submit"
+        >
+          Register
+        </button>
+      </div>
+    </form>
   </div>
-
-  <div>
-    <label class="block text-sm font-medium text-gray-700 mb-1"
-      >Last Name:</label
-    >
-    <input type="text" formControlName="lastName" />
-  </div>
-
-  <div>
-    <label class="block text-sm font-medium text-gray-700 mb-1">Email:</label>
-    <input
-      type="email"
-      formControlName="email"
-      class="form-input block w-full rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-    />
-  </div>
-
-  <div formArrayName="addresses">
-    <div
-      *ngFor="let address of addresses.controls; let i = index"
-      [formGroupName]="i"
-    >
-      <h3 class="text-3xl font-bold m-3 text-center">Address {{ i + 1 }}</h3>
-      <label class="block text-sm font-medium text-gray-700 mb-1"
-        >Street:</label
-      >
-      <input
-        type="text"
-        formControlName="street"
-        class="form-input block w-full rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-      />
-      <label class="block text-sm font-medium text-gray-700 mb-1">City: </label>
-      <select
-        formControlName="city"
-        class="form-select block w-full rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-      >
-        <option *ngFor="let city of cities" [value]="city.id">
-          {{ city.name }}
-        </option>
-      </select>
-      <!-- Other address inputs go here -->
-    </div>
-    <button
-      type="button"
-      (click)="addAddress()"
-      class="w-28 ml-3 inline-flex items-center rounded-md border border-transparent bg-yellow-300 px-4 py-2 text-sm font-medium text-gray-800 shadow-sm hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-    >
-      Add Address
-    </button>
-  </div>
-
-  <div formArrayName="contacts">
-    <div
-      *ngFor="let contact of contacts.controls; let i = index"
-      [formGroupName]="i"
-    >
-      <h3 class="text-3xl font-bold m-3 text-center">Contact {{ i + 1 }}</h3>
-      <label class="block text-sm font-medium text-gray-700 mb-1"
-        >Contact Number:</label
-      >
-      <input
-        type="text"
-        formControlName="contactNumber"
-        class="form-input block w-full rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-      />
-
-      <label class="block text-sm font-medium text-gray-700 mb-1"
-        >Contact Type:</label
-      >
-      <select
-        formControlName="contactType"
-        class="form-select block w-full rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-      >
-        <option value="phone">Phone</option>
-        <option value="email">Email</option>
-        <option value="fax">Fax</option>
-      </select>
-      <!-- Other contact inputs go here -->
-    </div>
-    <button
-      type="button"
-      (click)="addContact()"
-      class="w-28 ml-3 inline-flex items-center rounded-md border border-transparent bg-yellow-300 px-4 py-2 text-sm font-medium text-gray-800 shadow-sm hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-    >
-      Add Contact
-    </button>
-  </div>
-
-  <button
-    type="submit"
-    [disabled]="!clientForm.valid"
-    (click)="submitForm()"
-    class="w-28 ml-3 items-center rounded-md border border-transparent bg-yellow-400 px-4 py-2 text-lg font-medium text-gray-800 shadow-sm hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-  >
-    Submit
-  </button>
-</form>
-<p>Client Info: {{ clientForm.value | json }}</p>
+</div>
+<p class="font-bold text-center text-indigo-600">
+  Client Info: {{ clientForm.value | json }}
+</p>
