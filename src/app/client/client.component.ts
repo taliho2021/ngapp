@@ -65,6 +65,13 @@ export class ClientComponent implements OnInit {
   addContact(): void {
     this.contacts.push(this.createContactGroup());
   }
+  
+  removeAddress(index: number): void {  
+    this.addresses.removeAt(index); 
+  }
+  removeContact(index: number): void {
+    this.contacts.removeAt(index);    
+  }
 
   get addresses(): FormArray {
     return this.clientForm.get('addresses') as FormArray;
