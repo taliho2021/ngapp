@@ -1,54 +1,68 @@
 <p>client works!</p>
 
 <form [formGroup]="clientForm" (ngSubmit)="submitForm()">
-    <div>
-      <label>First Name:</label>
-      <input type="text" formControlName="firstName">
+  <div>
+    <label>First Name:</label>
+    <input type="text" formControlName="firstName" />
+  </div>
+
+  <div>
+    <label>Last Name:</label>
+    <input type="text" formControlName="lastName" />
+  </div>
+
+  <div>
+    <label>Email:</label>
+    <input type="email" formControlName="email" />
+  </div>
+
+  <div formArrayName="addresses">
+    <div
+      *ngFor="let address of addresses.controls; let i = index"
+      [formGroupName]="i"
+    >
+      <h3>Address {{ i + 1 }}</h3>
+      <label>Street:</label>
+      <input type="text" formControlName="street" />
+
+      <label>City: </label>
+      <select formControlName="city">
+        <option *ngFor="let city of cities" [value]="city.name">
+          {{ city.name }}
+        </option>
+      </select>
+      <label>State: </label>
+      <input type="text" formControlName="state" />
+      <label>Zip Code: </label>
+      <input type="text" formControlName="zipCode" />
+      <label>Country: </label>
+      <input type="text" formControlName="country" />
+      <!-- Other address inputs go here -->
+      <button type="button" (click)="removeAddress(i)">Remove Address</button>
     </div>
-  
-    <div>
-      <label>Last Name:</label>
-      <input type="text" formControlName="lastName">
+    <button type="button" (click)="addAddress()">Add Address</button>
+  </div>
+
+  <div formArrayName="contacts">
+    <div
+      *ngFor="let contact of contacts.controls; let i = index"
+      [formGroupName]="i"
+    >
+      <h3>Contact {{ i + 1 }}</h3>
+      <label>Contact Number:</label>
+      <input type="text" formControlName="contactNumber" />
+      <label>Contact Type:</label>
+      <select formControlName="contactType">
+        <option value="phone">Phone</option>
+        <option value="email">Email</option>
+        <option value="fax">Fax</option>
+      </select>
+      <!-- Other contact inputs go here -->
+      <button type="button" (click)="removeContact(i)">Remove Contact</button>
     </div>
-  
-    <div>
-      <label>Email:</label>
-      <input type="email" formControlName="email">
-    </div>
-  
-    <div formArrayName="addresses">
-      <div *ngFor="let address of addresses.controls; let i=index" [formGroupName]="i">
-        <h3>Address {{ i + 1 }}</h3>
-        <label>Street:</label>
-        <input type="text" formControlName="street">
-        <label
-          >City: </label> 
-          <select formControlName="city">
-            <option *ngFor="let city of cities" [value]="city.id">{{
-              city.name
-            }}</option>
-          </select> 
-        <!-- Other address inputs go here -->
-      </div>
-      <button type="button" (click)="addAddress()">Add Address</button>
-    </div>
-  
-    <div formArrayName="contacts">
-      <div *ngFor="let contact of contacts.controls; let i=index" [formGroupName]="i">
-        <h3>Contact {{ i + 1 }}</h3>
-        <label>Contact Number:</label>
-        <input type="text" formControlName="contactNumber">
-        <label>Contact Type:</label>
-        <select formControlName="contactType">
-          <option value="phone">Phone</option>
-          <option value="email">Email</option>
-          <option value="fax">Fax</option>
-        </select>
-        <!-- Other contact inputs go here -->
-      </div>
-      <button type="button" (click)="addContact()">Add Contact</button>
-    </div>
-  
-    <button type="submit">Submit</button>
-  </form>
-  <p>Client Info: {{ clientForm.value | json }}</p>
+    <button type="button" (click)="addContact()">Add Contact</button>
+  </div>
+
+  <button type="submit">Submit</button>
+</form>
+<p>Client Info: {{ clientForm.value | json }}</p>
