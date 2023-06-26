@@ -23,12 +23,33 @@ interface City {
 })
 export class ClientComponent implements OnInit {
   clientForm!: FormGroup;
+  addressGroupInModal!: FormGroup;
 
   cities: City[] = [
     { id: 1, name: 'New York' },
     { id: 2, name: 'Los Angeles' },
     { id: 3, name: 'Miami' },
   ];
+
+  currentModal!: string | null;
+
+  openModal(type: string): void {
+    this.currentModal = type;
+    if (type === 'address') {
+      this.addressGroupInModal = this.createAddressGroup();
+    }
+  }
+
+  // Add a new function to handle adding the temporary FormGroup to the FormArray.
+  saveAddressFromModal(): void {
+    this.addresses.push(this.addressGroupInModal);
+    this.closeModal();
+  }
+
+  closeModal(): void {
+    this.currentModal = null;
+  }
+
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
@@ -65,12 +86,12 @@ export class ClientComponent implements OnInit {
   addContact(): void {
     this.contacts.push(this.createContactGroup());
   }
-  
-  removeAddress(index: number): void {  
-    this.addresses.removeAt(index); 
+
+  removeAddress(index: number): void {
+    this.addresses.removeAt(index);
   }
   removeContact(index: number): void {
-    this.contacts.removeAt(index);    
+    this.contacts.removeAt(index);
   }
 
   get addresses(): FormArray {

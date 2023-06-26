@@ -87,11 +87,32 @@
         </div>
         <button
           type="button"
-          (click)="addAddress()"
+          (click)="openModal('address')"
           class="w-28 ml-3 inline-flex items-center rounded-md border border-transparent bg-yellow-300 px-4 py-2 text-sm font-medium text-gray-800 shadow-sm hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         >
           Add Address
         </button>
+
+        <button type="button" (click)="saveAddressFromModal()">
+          Save Address
+        </button>
+
+        <!-- Address Modal -->
+        <div
+          *ngIf="currentModal === 'address'"
+          class="fixed z-10 inset-0 overflow-y-auto"
+          aria-labelledby="modal-title"
+          role="dialog"
+          aria-modal="true"
+        >
+          <!-- Modal content here -->
+          <p>Address Modal Content Here</p>
+        </div>
+
+        <ng-template #addressModal>
+          <!-- Modal Content Here -->
+          <p>Address Modal</p>
+        </ng-template>
       </div>
 
       <!-- Contacts array block here -->
@@ -134,11 +155,28 @@
         </div>
         <button
           type="button"
-          (click)="addContact()"
+          (click)="openModal('contact')"
           class="w-28 ml-3 inline-flex items-center rounded-md border border-transparent bg-yellow-300 px-4 py-2 text-sm font-medium text-gray-800 shadow-sm hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         >
           Add Contact
         </button>
+
+        <!-- Contact Modal -->
+        <div
+          *ngIf="currentModal === 'contact'"
+          class="fixed z-10 inset-0 overflow-y-auto"
+          aria-labelledby="modal-title"
+          role="dialog"
+          aria-modal="true"
+        >
+          <!-- Modal content here -->
+          <p>Contact Modal Content</p>
+        </div>
+
+        <ng-template #contactModal>
+          <!-- Modal Content Here -->
+          <p>Contact Modal</p>
+        </ng-template>
       </div>
 
       <div class="flex items-center justify-between">
